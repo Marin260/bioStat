@@ -1,1 +1,1 @@
-web:gunicorn bioStat.wsgi
+web: gunicorn bioStat.wsgi
