@@ -1,5 +1,4 @@
 from faulthandler import disable
-from tkinter import Label
 from django import forms
 
 
