@@ -1,0 +1,20 @@
+.data{
+    height: 500px;
+    overflow-y: scroll;
+}
+
+table{
+    border: 1px solid black;
+}
+
+table tr td{
+    border: 1px solid black;
+}
+
+table th {
+    cursor: pointer;
+}
+
+.greyCell{
+    background-color: #555;
+}

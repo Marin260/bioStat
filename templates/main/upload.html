@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script defer src="{% static './js/main.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static './css/main.css' %}">
+
 </head>
 <body>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -13,5 +18,15 @@
         {{ form }}
         <input type="submit">
     </form>
+    <div class="data">
+        <table id="displayData">
+            
+        </table>
+    </div>
+    {% if graph %}
+        <img src="data:image/png;base64, {{ graph|safe }}" alt="">
+    {% else %}
+        <p>no</p>
+    {% endif %}
 </body>
 </html>

@@ -11,10 +11,12 @@ def file_upload(request):
     if request.method == 'POST':
         form = UploadFile(request.POST, request.FILES)
         if form.is_valid():
+            print("sent")
             data = form.cleaned_data
-            date = data['dateFrom']
-            print(type(date))
-            handleFile(request.FILES['file'], data['columns'])
+            graph = handleFile(request.FILES['file'], data)
+            return render(request, 'main/upload.html', {'form': form, 'graph': graph})
+        else:
+            print("invalid form")
             
     else:
         form = UploadFile()
