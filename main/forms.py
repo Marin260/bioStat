@@ -9,8 +9,8 @@ H_SAMPLE =(
     ("24H", "24H")
 )
 MATH_FS =(
-    ("1", "MEAN"),
-    ("2", "SUM")
+    ("MEAN", "MEAN"),
+    ("SUM", "SUM")
 )
 class UploadFile(forms.Form):
     file = forms.FileField()

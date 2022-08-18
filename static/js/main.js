@@ -44,14 +44,6 @@ input.addEventListener('change', (e) => {
         data = data.split(/\r?\n/);
         data = data.map(item => item = item.split(/\t/));
 
-        // date stuff 
-        console.log(data[0][1]);
-        console.log(data[0][2]);
-        console.log(data[data.length - 2]);
-
-        // data[0] -> first mesurment
-        // data[data.length - 2] -> last mesurment
-
         let startDate = data[0][1] + " " + data[0][2];
         let endDate = data[data.length - 2][1] + " " + data[data.length - 2][2];
 
@@ -86,6 +78,8 @@ input.addEventListener('change', (e) => {
     }
     reader.readAsText(input.files[0], 'UTF-8');    
 });
+
+
 
 
 // TODO

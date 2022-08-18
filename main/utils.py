@@ -19,7 +19,6 @@ def parseRange(colInput):
             list_of_cols.append(int(el))
         except ValueError:
             pass
-    print(list_of_cols)
     return list_of_cols
 
 
@@ -48,37 +47,33 @@ def get_plot(df):
     return graph
 
 
-
 def dataToDF(data, userInput):
     toDelete = parseRange(userInput['columns'])
     df = pd.DataFrame.from_records(data)
-    #print(df)
     df['datetime'] = df.iloc[:, 1] + ' ' + df.iloc[:, 2]
     df['datetime'] = pd.to_datetime(df['datetime'])
     df = df.set_index(df['datetime'])
     df.drop(df.columns[[0, 1, 2, 3, 4, 5, 6, 7, 8, 29]], axis = 1, inplace = True)
     df.drop(toDelete, axis = 1, inplace = True) # delete selected columns
-    print(df)
-    print(type(df[['datetime']]))
-    print(type(pd.to_datetime(userInput['dateTo'])))
     df = df[~(df['datetime'] > np.datetime64(userInput['dateTo']))]
     df = df[~(df['datetime'] < np.datetime64(userInput['dateFrom']))]
     #df.drop(df.columns[toDelete], axis = 1, inplace = True) 
     df = df.drop(columns=['datetime'])
     df = df.astype(int)
 
-    print(df.head(5))
-    df = df.resample(userInput['sampling']).sum().mean(axis=1)
+    #df = df.resample(userInput['sampling']).sum().mean(axis=1)
+    if userInput['selected_function'] == "MEAN":
+        df = df.resample(userInput['sampling']).mean()
+    elif userInput['selected_function'] == "SUM":
+        df = df.resample(userInput['sampling']).sum()
+
+    #df = df.resample(userInput['sampling']).sum()
 
     #df =  df.mean(axis=1)
     df = df.round(decimals=2)
-    print(df.head(5))
 
 
     df.index = pd.to_datetime(df.index)
-    
-    print("values: {}".format(type(df.values)))
-    print("index: {}".format(type(df.index)))
     myGraph = get_plot(df)
     return myGraph
     #plt.show()
