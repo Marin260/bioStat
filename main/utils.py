@@ -16,7 +16,8 @@ def parseRange(colInput):
     list_of_cols = []
     for el in colInput.split(','):
         try:
-            list_of_cols.append(int(el))
+            if int(el) > 9 and int(el) < 42:
+                list_of_cols.append(int(el))
         except ValueError:
             pass
     return list_of_cols
