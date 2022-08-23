@@ -41,7 +41,6 @@ def get_graph():
 def get_plot(df):
     plt.switch_backend('AGG')
     plt.figure(figsize=(10,5))
-    #plt.plot(x, y)
     df.plot.line()
     graph = get_graph()
     return graph

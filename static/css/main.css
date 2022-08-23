@@ -1,20 +1,33 @@
-.data{
-    height: 500px;
-    overflow-y: scroll;
-}
-
-table{
-    border: 1px solid black;
-}
-
-table tr td{
-    border: 1px solid black;
-}
-
 table th {
     cursor: pointer;
+    padding: .5rem;
+    background: #393939;
+    transition: background 250ms ease, color 250ms ease;
+    border-radius: 3px;
+    color: #fff;
+
 }
 
+table th:hover {
+    background: #23d5ab;
+    color: #000;
+}
+
+
 .greyCell{
-    background-color: #555;
+    background: #ec2020;
+}
+.data{
+    overflow-y: scroll;
+    background-color: white;
+}
+
+
+
+.celltd{
+    padding-inline: .5rem;
+}
+
+.removeElement{
+    display: none;
 }

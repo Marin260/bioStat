@@ -6,8 +6,18 @@ const input = document.querySelector('#id_file'); // get the input file
 let data = ""; // file contents will go here
 
 input.addEventListener('change', (e) => {
+    var tabletoAdd = document.getElementById("tableData");
+    var imgtoAdd = document.getElementById("graphimg");
+    const myPlayer = document.querySelectorAll(".my-player");
+    myPlayer.forEach(ell => ell.classList.toggle("removeElement"));
+
+    tabletoAdd.classList.toggle("removeElement");
+    imgtoAdd.classList.toggle("removeElement");
+    
+
     let colsToRemove = [];
     let htmlCols = document.getElementById("id_columns")
+    htmlCols.value = "";
 
     // create table to display the data from the upload file
     let table = document.querySelector('#displayData');
@@ -62,13 +72,20 @@ input.addEventListener('change', (e) => {
         // end datestuff
 
 
-        const tableDisplay = data.length > 1000 ? 1000 : data.length; // limit shown data to save performance (**fix this later)
+        const tableDisplay = data.length > 100 ? 100 : data.length; // limit shown data to save performance (**fix this later)
 
         for (let i = 0; i < tableDisplay; i++){
             let contentRow = document.createElement('tr'); // create row
             for (let j = 0; j < tableHeaders.length; j++){
                 const tableData = document.createElement('td'); // create table cell
                 tableData.classList.add("col-"+tableHeaders[j]);
+                tableData.classList.add("celltd");
+                tableData.classList.add("rounded-md");
+                tableData.classList.add("border-2");
+                let tmpTransitionDuration = 250 + (50 * i); 
+                tableData.classList.add("transition");
+                tableData.classList.add("duration-"+tmpTransitionDuration);
+
                 const tableDataText = document.createTextNode(data[i][j]); // insert data from the file in the cell
                 tableData.appendChild(tableDataText);
                 contentRow.appendChild(tableData);
@@ -78,14 +95,3 @@ input.addEventListener('change', (e) => {
     }
     reader.readAsText(input.files[0], 'UTF-8');    
 });
-
-
-
-
-// TODO
-// write to new parsed file depending on checkboxes
-// send to django server
-// return data to frontend
-// plot something
-
-

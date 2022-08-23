@@ -11,23 +11,50 @@
     <script defer src="{% static './js/main.js' %}"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+    <link rel="stylesheet" href="{% static './css/form.css' %}">
     <link rel="stylesheet" href="{% static './css/main.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,900;1,200;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
 </head>
 <body>
-    <form action="/" method="POST" enctype="multipart/form-data" id="my-great-dropzone" class="">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit">
-    </form>
-    <div class="data">
-        <table id="displayData">
-            
-        </table>
+    <div id="page" class="grid grid-cols-1 w-9/12 mx-auto">
+        <div class="content w-full">
+            <form action="/" method="POST" enctype="multipart/form-data" id="my-great-dropzone" class="">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" id="submit-button" class="bg-green-500 text-white mt-8 text-5xl font-semibold py-2 px-4 rounded"  value="RUN">
+            </form>
+            <div class="img-div overflow-x-auto flex px-6">
+                <div class="data self-center  min-h-[0px] max-h-[700px] removeElement" id="tableData">
+                    <h1 class="p-6 bg-transparent">Click on table headers to select unwanted columns</h1>
+                    <table id="displayData" class="bg-white">
+                        
+                    </table>
+                </div>
+                <div id="graphimg" class="self-center w-full">
+                    {% if graph %}
+                        <img src="data:image/png;base64, {{ graph|safe }}" alt="" class="mx-auto">
+                    {%else%}
+                    <div id="animation" class="flex flex-col w-full">
+                        <h1 class="self-center my-player text-5xl font-semibold">Choose a file to start...</h1>
+                        <lottie-player class="self-center my-player w-full" src="https://assets6.lottiefiles.com/packages/lf20_s9lvjg2e.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop autoplay></lottie-player>
+                    </div>
+                    {% endif %}
+                
+                </div>
+                <div id="bg"></div>
+            </div>
+        </div>
+        
+
     </div>
-    {% if graph %}
-        <img src="data:image/png;base64, {{ graph|safe }}" alt="">
-    {% endif %}
 </body>
 
 </html>

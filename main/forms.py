@@ -14,8 +14,8 @@ MATH_FS =(
 )
 class UploadFile(forms.Form):
     file = forms.FileField()
-    columns = forms.CharField(label='Selected Columns', required=False)
-    dateFrom = forms.DateTimeField(label='select starting date')
-    dateTo = forms.DateTimeField(label='select ending date')
+    columns = forms.CharField(label='Selected Columns', required=False, widget=forms.TextInput(attrs={'placeholder': 'Eg.: 1, 2, 4, 10'}))
+    dateFrom = forms.DateTimeField(label='Select starting date', widget=forms.TextInput(attrs={'placeholder': 'Eg.: 2019-12-21T08:00'}))
+    dateTo = forms.DateTimeField(label='Select ending date', widget=forms.TextInput(attrs={'placeholder': 'Eg.: 2019-12-29T08:00'}))
     sampling = forms.ChoiceField(choices=H_SAMPLE)
     selected_function = forms.ChoiceField(choices=MATH_FS)
