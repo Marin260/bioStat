@@ -15,7 +15,7 @@ This is BioStat dev repo.
 - [ ] Fix 29 column bug
 
 ### Later
-- [ ] Check if data is dams or dam4
+- [ ] Check if data is dam1 or dam4
 - [ ] Change from static to dynamic column titles
 - [ ] DAM4 mean and sum
 - [ ] Sleep activity measure
