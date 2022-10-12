@@ -21,5 +21,3 @@ This is BioStat dev repo.
 - [ ] Sleep activity measure
 - [ ] Heatmap consuption for DAM4
 - [ ] Find Heroku alternative
-
-## Bla bla bla
